@@ -6,9 +6,9 @@ public class Enemy_ChaseBehaviour : StateMachineBehaviour
 {
     public float PlayerDistance;
     public float Speed = 2;
-
     private Transform _player;
-
+    private Transform _edgedetectionPoint;
+    public LayerMask lighter;
     //Angle
     [Range(0f, 360f)]
     public float visionAngle;
@@ -18,6 +18,9 @@ public class Enemy_ChaseBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _edgedetectionPoint = GameObject.FindGameObjectWithTag("EdgeDet").transform;
+        
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,14 +29,23 @@ public class Enemy_ChaseBehaviour : StateMachineBehaviour
         //Check triggers
         var playerClose = IsPlayerClose(animator.transform);
         var playerAngle = IsPlayerInAngle(animator.transform);
-
-        animator.SetBool("IsChasing", playerClose && playerAngle);
+        var lightClose = IsLightDetected();
+        
+        
+        //animator.SetBool("IsChasing", lightClose);
+        animator.SetBool("IsIdle", !lightClose);
+        
         //animator.SetBool("IsChasing", playerClose);
 
         //Move to player
         Vector2 dir = _player.position - animator.transform.position;
         animator.transform.position += (Vector3)dir.normalized * Speed * Time.deltaTime;
 
+    }
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetBool("IsChasing", false);
     }
 
     private bool IsPlayerClose(Transform transform)
@@ -48,5 +60,12 @@ public class Enemy_ChaseBehaviour : StateMachineBehaviour
         var dist = _player.position - transform.position;
 
         return (Vector3.Angle(dist, transform.right) < visionAngle * 0.5f) && (dist.magnitude < visionDistance);
+    }
+
+    private bool IsLightDetected()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(_edgedetectionPoint.position, Vector2.right,
+            0.5f, lighter);
+        return hit.collider != null;
     }
 }

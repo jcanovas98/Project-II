@@ -7,6 +7,7 @@ TagManager:
   - EdgeDet
   - Stair
   - Ally
+  - lighter
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Ground
   - Event
   - Ally
-  - 
-  - 
+  - Stairs
+  - lighter
   - 
   - 
   - 

@@ -24,4 +24,18 @@ public class PlayersManager : MonoBehaviour
     {
         Players.Add(g);
     }
+
+    public void RemoveToList(GameObject g)
+    {
+        var f = Players.IndexOf(g);
+        Players.Remove(g);
+        for(int i = Players.Count - 1; i < f; i--)
+        {
+            
+            Players[i - 1] = Players[i];
+            
+            
+        }
+        
+    }
 }

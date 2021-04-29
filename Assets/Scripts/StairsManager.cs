@@ -24,10 +24,10 @@ public class StairsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _Player = GameObject.Find("Player");    
-       
-        
-        
+        _Player = PM.Players[0].gameObject;
+
+
+
         IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
         StairsEnabled = false;
         
@@ -39,18 +39,18 @@ public class StairsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _Player = PM.Players[0].gameObject;
         if (PlayerClose(_StairsDown) && Input.GetKeyDown("e"))
         {
             
             if (StairsEnabled == true)
             {
-                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
+                IgnoreCollisions(_Stair.GetComponent<Collider2D>(), true);
                 StairsEnabled = false;
             }
             else
             {
-                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), false);
+                IgnoreCollisions(_Stair.GetComponent<Collider2D>(), false);
                 StairsEnabled = true;                
             }
         }
@@ -59,12 +59,12 @@ public class StairsManager : MonoBehaviour
         {
             if (RoofEnabled == false)
             {
-                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), false);
+                IgnoreCollisions(_RoofStairs.GetComponent<Collider2D>(), false);
                 RoofEnabled = true;
             }
             else
             {
-                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
+                IgnoreCollisions(_RoofStairs.GetComponent<Collider2D>(), true);
                 RoofEnabled = false;
             }
         }

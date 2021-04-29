@@ -56,20 +56,24 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Player\Lighter.cs" />
     <Compile Include="Assets\testGitBorrameXD.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy_ChaseBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerFollow.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory\Actions.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory\InventorySystem.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayersManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory\ItemControler.cs" />
+    <Compile Include="Assets\Scripts\Player\Character.cs" />
     <Compile Include="Assets\Scripts\Objeto.cs" />
     <Compile Include="Assets\Scripts\StairsManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy_PatrolBehaviour.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy_IdleBehaviour.cs" />
     <Compile Include="Assets\sii.cs" />
-    <Compile Include="Assets\Scripts\Player\Lighter.cs" />
-    <Compile Include="Assets\Scripts\Door.cs" />
-    <Compile Include="Assets\Scripts\Player\InventorySystem.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Kill.cs" />
+    <Compile Include="Assets\Scripts\Player\AllyLighter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

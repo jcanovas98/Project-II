@@ -18,18 +18,19 @@ public class Door : MonoBehaviour
     void Awake()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        Player = GameObject.Find("Player");
+        
     }
     void Start()
     {
-        
+        Player = PM.Players[0].gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if((PlayerClose(In) || PlayerClose(Out)) && Input.GetKeyDown("e"))
+        Player = PM.Players[0].gameObject;
+
+        if ((PlayerClose(In) || PlayerClose(Out)) && Input.GetKeyDown("e"))
         {
             
             if(closed)

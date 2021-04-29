@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     //private List<GameObject> Players = new List<GameObject>();
     public float Speed;
     PlayersManager PM;
-    private GameObject Player => gameObject;
+    private GameObject Player => GameObject.Find("Player");
     public float playerMaxDist = 0.5f;
 
     //private float _horizontal = 1;
@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-           
+        
+
     }
 
     private void Start()
@@ -36,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKey("d"))
         {
-            Speed = 4;
+            Speed = 2.5f;
         }
         else if(Input.GetKey("a"))
         {
-            Speed = -4;
+            Speed = -2.5f;
         }
         else
         {
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             for (int i = 1; i < PM.Players.Count; i++)
             {
-                if ((PM.Players[i].transform.position - PM.Players[i - 1].transform.position).magnitude > playerMaxDist)
+                if ((PM.Players[i].transform.position - PM.Players[i - 1].transform.position).magnitude > playerMaxDist && PM.Players[i] != null)
                 {
                     Vector2 vel = PM.Players[i].GetComponent<Rigidbody2D>().velocity;
                     vel.x = Speed;
