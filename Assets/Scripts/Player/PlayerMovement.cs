@@ -17,13 +17,13 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        
+        PM.AddToList(Player);
 
     }
 
     private void Start()
     {
-        PM.AddToList(Player);
+        PM.Players.RemoveAt(1);
     }
 
     // Update is called once per frame

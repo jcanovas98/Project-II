@@ -14,6 +14,7 @@ public class StairsManager : MonoBehaviour
     public GameObject _RoofStairs;
     public GameObject _StairsDown;
     public GameObject _StairsUp;
+    
 
     
     void Awake()
@@ -25,14 +26,13 @@ public class StairsManager : MonoBehaviour
     void Start()
     {
         _Player = PM.Players[0].gameObject;
-
-
-
+        
         IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
         StairsEnabled = false;
-        
+
         IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
-        RoofEnabled = false;
+        RoofEnabled = false;      
+        
 
     }
 
@@ -45,12 +45,12 @@ public class StairsManager : MonoBehaviour
             
             if (StairsEnabled == true)
             {
-                IgnoreCollisions(_Stair.GetComponent<Collider2D>(), true);
+                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
                 StairsEnabled = false;
             }
             else
             {
-                IgnoreCollisions(_Stair.GetComponent<Collider2D>(), false);
+                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), false);
                 StairsEnabled = true;                
             }
         }
@@ -59,12 +59,12 @@ public class StairsManager : MonoBehaviour
         {
             if (RoofEnabled == false)
             {
-                IgnoreCollisions(_RoofStairs.GetComponent<Collider2D>(), false);
+                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), false);
                 RoofEnabled = true;
             }
             else
             {
-                IgnoreCollisions(_RoofStairs.GetComponent<Collider2D>(), true);
+                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
                 RoofEnabled = false;
             }
         }
