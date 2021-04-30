@@ -17,6 +17,7 @@ public class Enemy_PatrolBehaviour : StateMachineBehaviour
     public LayerMask WhatIsGround;
     public LayerMask lighter;
     public float Speed;
+    private float RotationAngle = 0;
 
     //Angle
     [Range(0f, 360f)]
@@ -55,7 +56,8 @@ public class Enemy_PatrolBehaviour : StateMachineBehaviour
         animator.SetBool("IsPatroling", !timeUp);
 
         //Edge
-        if (EdgeDetected() || !EdgeWallDetected())
+
+        if (EdgeDetected() || !EdgeWallDetectedRight() || !EdgeWallDetectedLeft())
             Flip(animator, stateInfo, layerIndex);
         Move(animator, stateInfo, layerIndex);
         
@@ -93,12 +95,23 @@ public class Enemy_PatrolBehaviour : StateMachineBehaviour
             1.5f, WhatIsGround);
         return hit.collider == null;
     }
-    private bool EdgeWallDetected()
+    private bool EdgeWallDetectedRight()
     {
         RaycastHit2D hit = Physics2D.Raycast(_edgedetectionPoint.position, Vector2.right,
-            0.5f, WhatIsGround);
+            1.5f, WhatIsGround);
+
         return hit.collider == null;
     }
+
+    private bool EdgeWallDetectedLeft()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(_edgedetectionPoint.position, Vector2.left,
+            1.5f, WhatIsGround);
+
+        return hit.collider == null;
+    }
+
+
 
     private void Move(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -108,7 +121,12 @@ public class Enemy_PatrolBehaviour : StateMachineBehaviour
 
     private void Flip(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.Rotate(0, 180, 0);
+        //Debug.Log("FLIP FLIP");
+        if (RotationAngle == 0) RotationAngle = 180;
+        else RotationAngle = 0;
+
+        animator.transform.Rotate(0 ,RotationAngle, 0);
+        
     }
 
     private bool IsLightDetected()
