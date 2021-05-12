@@ -3020,7 +3020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69159c00c7dd0674fb5dffd54f5a32dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalSmoothing: 0.227
+  globalSmoothing: 0.3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3031,7 +3031,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.068396226, g: 0.17703708, b: 0.2735849, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7100,6 +7100,18 @@ PrefabInstance:
     - target: {fileID: 1839028944728320, guid: c1bb0c8e19022fc43ba19a25bb49d7df, type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470860117195722, guid: c1bb0c8e19022fc43ba19a25bb49d7df, type: 3}
+      propertyPath: m_Color.b
+      value: 0.008757554
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470860117195722, guid: c1bb0c8e19022fc43ba19a25bb49d7df, type: 3}
+      propertyPath: m_Color.g
+      value: 0.008757554
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470860117195722, guid: c1bb0c8e19022fc43ba19a25bb49d7df, type: 3}
+      propertyPath: m_Color.r
+      value: 0.38679248
       objectReference: {fileID: 0}
     - target: {fileID: 224921789604700412, guid: c1bb0c8e19022fc43ba19a25bb49d7df, type: 3}
       propertyPath: m_Pivot.x
