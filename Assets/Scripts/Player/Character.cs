@@ -7,8 +7,11 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField] private Lighter lighter;
+
     
     public GameObject ligtherPrefab;
+    public GameObject radioPrefab;
+    public GameObject noseDetectorPrefab;
     private GameObject g;
     private Vector3 targetPosition;
     private Vector3 playerPosition;
@@ -24,6 +27,8 @@ public class Character : MonoBehaviour
     void Start()
     {
         InstantiateLight();
+        InstantiateRadio();
+        InstantiateNoiseDetector();
         kill = false;
 
     }
@@ -35,6 +40,9 @@ public class Character : MonoBehaviour
         {
             g = GameObject.Find("Players").transform.GetChild(0).gameObject;
             InstantiateLight();
+            InstantiateRadio();
+            InstantiateNoiseDetector();
+            kill = false;
         }
         playerPosition = GameObject.Find("Players").transform.GetChild(0).transform.position;
         targetPosition = GetMouseWorldPosition();
@@ -56,11 +64,21 @@ public class Character : MonoBehaviour
         Instantiate(ligtherPrefab, g.transform.position, g.transform.rotation, g.transform);
         lighter = g.transform.GetChild(0).gameObject.GetComponentInChildren<Lighter>();
         g.transform.GetChild(0).gameObject.GetComponentInChildren<Lighter>().gameObject.SetActive(false);
-        kill = false;
+        
         
     }
 
-    
+    public void InstantiateRadio()
+    {
+        Instantiate(radioPrefab, g.transform.position, g.transform.rotation, g.transform);
+        
+    }
+
+    public void InstantiateNoiseDetector()
+    {
+        Instantiate(noseDetectorPrefab, g.transform.position, g.transform.rotation, g.transform);
+
+    }
 
 
 }

@@ -9,7 +9,7 @@ public class ItemControler : MonoBehaviour
     public GameObject imageItem;
     public int Type;
 
-    private float maxDistance = 0.5f;    
+    private float maxDistance = 1.0f;    
     InventorySystem inventory;    
     public bool close;
 

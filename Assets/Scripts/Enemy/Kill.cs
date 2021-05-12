@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Kill : MonoBehaviour
 {
-    private BoxCollider2D col;
+    
     private PlayersManager PM;
     private Character Ch;
     // Start is called before the first frame update
     void Start()
     {
-        col = gameObject.GetComponent<BoxCollider2D>();
+        
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         Ch = GameObject.Find("Players").GetComponent<Character>();
     }
@@ -26,9 +26,11 @@ public class Kill : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
 
-            PM.RemoveToList(collision.gameObject);            
+            PM.RemoveToList(collision.gameObject, PM.Players);
+            PM.RemoveToList(collision.gameObject, PM.Allys);
             Destroy(collision.gameObject);
             Ch.kill = true;
+            PM.RemoveToList(gameObject, PM.Enemies);
             Destroy(gameObject);
             
         }

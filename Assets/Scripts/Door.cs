@@ -28,25 +28,29 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Player = PM.Players[0].gameObject;
-
-        if ((PlayerClose(In) || PlayerClose(Out)) && Input.GetKeyDown("e"))
+        if(PM.Players[0] != null)
         {
-            
-            if(closed)
+            Player = PM.Players[0].gameObject;
+
+            if ((PlayerClose(In) || PlayerClose(Out)) && Input.GetKeyDown("e"))
             {
-                IgnoreCollisions(closed);
-                
-                
+
+                if (closed)
+                {
+                    IgnoreCollisions(closed);
+
+
+                }
+                else
+                {
+                    IgnoreCollisions(closed);
+
+
+                }
+
             }
-            else
-            {
-                IgnoreCollisions(closed);
-                
-                
-            }
-            
         }
+        
     }
 
     private void IgnoreCollisions(bool enable)

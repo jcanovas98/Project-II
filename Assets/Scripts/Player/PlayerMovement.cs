@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     
     //private List<GameObject> Players = new List<GameObject>();
-    public float Speed;
+    public float Speed;    
+    public float speedChange;
     PlayersManager PM;
     private GameObject Player => GameObject.Find("Player");
     public float playerMaxDist = 0.5f;
@@ -17,13 +19,13 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        PM.AddToList(Player);
+        
 
     }
 
     private void Start()
     {
-        PM.Players.RemoveAt(1);
+        
     }
 
     // Update is called once per frame
@@ -35,19 +37,37 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speedChange = 1;
+        }
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+            speedChange = -1.5f;
+        }
+        else
+        {
+            speedChange = 0;
+        }
+
+
         if(Input.GetKey("d"))
         {
-            Speed = 2.5f;
+            Speed = 2.5f + speedChange;
         }
         else if(Input.GetKey("a"))
         {
-            Speed = -2.5f;
+            Speed = -2.5f - speedChange;
         }
         else
         {
             Speed = 0;
             
         }
+
+        
+        
 
 
         Vector2 vel1 = PM.Players[0].GetComponent<Rigidbody2D>().velocity;
@@ -66,9 +86,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 
             }
-        }
-       
-        
+        }     
         
     }
 

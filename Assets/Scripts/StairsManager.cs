@@ -31,7 +31,9 @@ public class StairsManager : MonoBehaviour
         StairsEnabled = false;
 
         IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
-        RoofEnabled = false;      
+        RoofEnabled = false;
+
+        IgnoreCollisionsEnemies(_Stair.GetComponent<Collider2D>(), true);
         
 
     }
@@ -86,9 +88,20 @@ public class StairsManager : MonoBehaviour
 
     private void IgnoreCollisionsStart(Collider2D col, bool enable)
     {
-        for (int i = 0; i < PM.Allys.Length; i++)
+        
+        for (int i = 0; i < PM.Allys.Count; i++)
         {
             Physics2D.IgnoreCollision(PM.Allys[i].GetComponent<Collider2D>(), col, enable);
+
+        }
+    }
+
+    private void IgnoreCollisionsEnemies(Collider2D col, bool enable)
+    {
+
+        for (int i = 0; i < PM.Enemies.Count; i++)
+        {
+            Physics2D.IgnoreCollision(PM.Enemies[i].GetComponent<Collider2D>(), col, enable);
 
         }
     }
