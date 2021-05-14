@@ -6,6 +6,7 @@ public class AimDirection : MonoBehaviour
 {
     private Vector3 targetPosition;
     private Vector3 playerPosition;
+    public float angleOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class AimDirection : MonoBehaviour
         targetPosition = GetMouseWorldPosition();
         Vector3 aimDir = (targetPosition - playerPosition).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(angle - angleOffset, Vector3.forward);
         transform.rotation = rotation;
     }
 

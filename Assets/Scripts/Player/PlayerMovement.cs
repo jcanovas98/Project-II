@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     //private List<GameObject> Players = new List<GameObject>();
     public float Speed;    
     public float speedChange;
+    public bool Right;
     PlayersManager PM;
     private GameObject Player => GameObject.Find("Player");
     public float playerMaxDist = 0.5f;
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        
+        Right = true;
     }
 
     // Update is called once per frame
@@ -55,14 +56,17 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey("d"))
         {
             Speed = 2.5f + speedChange;
+            Right = true;
         }
         else if(Input.GetKey("a"))
         {
             Speed = -2.5f - speedChange;
+            Right = false;
         }
         else
         {
             Speed = 0;
+            
             
         }
 

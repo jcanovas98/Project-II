@@ -78,9 +78,12 @@
     <Compile Include="Assets\Scripts\Player\Inventory\AimDirection.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Enemy\Kill.cs" />
-    <Compile Include="Assets\Scripts\Player\Inventory\Radio.cs" />
     <Compile Include="Assets\Scripts\Enemy\Demonio\Demonio_AttractBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\Demonio\Demonio_DistractBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory\Radio.cs" />
+    <Compile Include="Assets\Scripts\Lights\InterruptorLuces.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Cascabel\Cascabel_AttractBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory\Piedra.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6771374324463189298}
   - component: {fileID: 5837032573631949082}
   - component: {fileID: 1112134728785291039}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cascabel1
   m_TagString: Enemy
   m_Icon: {fileID: 0}

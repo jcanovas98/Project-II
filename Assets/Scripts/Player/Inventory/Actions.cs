@@ -13,12 +13,14 @@ public class Actions : MonoBehaviour
     private GameObject _item;
     private GameObject _itemSelected;
     private GameObject _lighter;
-    private GameObject _radio;
+    private GameObject _radio;    
     private bool lighter;
     private bool blueLight;
 
     public int _slot;
-  
+
+    public GameObject piedraPrefab;
+
     void Awake()
     {
         _slot = 0;
@@ -34,6 +36,7 @@ public class Actions : MonoBehaviour
 
         blueLight = true;
         lighter = true;
+        
     }
 
 
@@ -49,6 +52,7 @@ public class Actions : MonoBehaviour
         //USAR OBJETO 
         if (Input.GetMouseButtonDown(0))
         {
+            
             _itemSelected = _inventory.CheckItems(_inventory.strSlots[_slot]);
             //USARLO
             if (_itemSelected != null)
@@ -56,6 +60,10 @@ public class Actions : MonoBehaviour
                 int i = _itemSelected.GetComponent<ItemControler>().Type;
                 if (i >= 2)
                 {
+                    if(i == 2)
+                    {
+                        Instantiate(piedraPrefab, PM.Players[0].transform.position, PM.Players[0].transform.rotation);
+                    }
                     if(i == 4)
                     {
                         for(int j = 0; j < PM.Enemies.Count; j++)
@@ -77,11 +85,10 @@ public class Actions : MonoBehaviour
                 if(i == 0)
                 {
                     _lighter = GameObject.Find("Players").transform.GetChild(0).transform.Find("Linterna(Clone)").gameObject;
-                    _lighter.SetActive(lighter);
-                    _lighter.transform.GetChild(0).gameObject.SetActive(false);
-                    ChangeColor(false);
-                    blueLight = true;
-                    lighter = !lighter;
+                    _lighter.SetActive(lighter);                             
+                    lighter = !lighter;                    
+                    
+                    
                 }
 
                 if(i == 1)
@@ -91,10 +98,12 @@ public class Actions : MonoBehaviour
                 }
                 
             }
+            Debug.Log(blueLight);
         }
 
         if (Input.GetMouseButtonDown(1))
         {
+
             _itemSelected = _inventory.CheckItems(_inventory.strSlots[_slot]);
             //USARLO
             if (_itemSelected != null)
@@ -111,6 +120,7 @@ public class Actions : MonoBehaviour
                 
 
             }
+            Debug.Log(blueLight);
         }
 
         //MOVER SLOT 
@@ -142,12 +152,12 @@ public class Actions : MonoBehaviour
     {
         if(blueLightOn)
         {
-            _lighter.GetComponent<Renderer>().material.color = Color.blue;
+            GameObject.Find("Luz de Linterna").GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().color = Color.blue;
         }
 
         else
         {
-            _lighter.GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("Luz de Linterna").GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>().color = Color.yellow;
         }
         
     }

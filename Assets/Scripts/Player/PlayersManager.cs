@@ -9,6 +9,7 @@ public class PlayersManager : MonoBehaviour
     public List<GameObject> Allys;
     public List<GameObject> Players = new List<GameObject>();
     public List<GameObject> Enemies;
+    public Vector3 Pposition;
     
     // Start is called before the first frame update
     void Awake()

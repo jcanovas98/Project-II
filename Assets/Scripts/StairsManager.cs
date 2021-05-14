@@ -9,6 +9,10 @@ public class StairsManager : MonoBehaviour
     public bool StairsEnabled;
     private float maxDistance = 1;
     public bool RoofEnabled;
+    public bool StairsDirection;
+    public bool StairsOff;
+    public bool StairsAndRoofOff;
+    private float angleOffset;
     private GameObject _Player;
     public GameObject _Stair;
     public GameObject _RoofStairs;
@@ -25,13 +29,45 @@ public class StairsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(StairsDirection)
+        {
+            angleOffset = -1f;
+        }
+        else
+        {
+            angleOffset = 1f;
+        }
         _Player = PM.Players[0].gameObject;
         
-        IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
-        StairsEnabled = false;
+        if(StairsAndRoofOff)
+        {
+            IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
+            StairsEnabled = false;
 
-        IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
-        RoofEnabled = false;
+            IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), false);
+            RoofEnabled = true;
+        }
+        else
+        {
+            if (!StairsOff)
+            {
+                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
+                StairsEnabled = false;
+
+                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
+                RoofEnabled = false;
+            }
+            else
+            {
+                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), false);
+                StairsEnabled = true;
+
+                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), false);
+                RoofEnabled = true;
+            }
+        }
+        
+        
 
         IgnoreCollisionsEnemies(_Stair.GetComponent<Collider2D>(), true);
         
@@ -49,11 +85,21 @@ public class StairsManager : MonoBehaviour
             {
                 IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
                 StairsEnabled = false;
+                _StairsDown.transform.Rotate(0.0f, 0.0f, -45.0f * angleOffset);
+
+                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), false);
+                RoofEnabled = true;
+                _StairsUp.transform.Rotate(0.0f, 0.0f, -45.0f * angleOffset);
             }
             else
             {
                 IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), false);
-                StairsEnabled = true;                
+                StairsEnabled = true;
+                _StairsDown.transform.Rotate(0.0f, 0.0f, 45.0f * angleOffset);
+
+                IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
+                RoofEnabled = false;
+                _StairsUp.transform.Rotate(0.0f, 0.0f, 45.0f * angleOffset);
             }
         }
 
@@ -63,11 +109,21 @@ public class StairsManager : MonoBehaviour
             {
                 IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), false);
                 RoofEnabled = true;
+                _StairsUp.transform.Rotate(0.0f, 0.0f, -45.0f * angleOffset);
+
+                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), true);
+                StairsEnabled = false;
+                _StairsDown.transform.Rotate(0.0f, 0.0f, -45.0f * angleOffset);
             }
             else
             {
                 IgnoreCollisionsStart(_RoofStairs.GetComponent<Collider2D>(), true);
                 RoofEnabled = false;
+                _StairsUp.transform.Rotate(0.0f, 0.0f, 45.0f * angleOffset);
+
+                IgnoreCollisionsStart(_Stair.GetComponent<Collider2D>(), false);
+                StairsEnabled = true;
+                _StairsDown.transform.Rotate(0.0f, 0.0f, 45.0f * angleOffset);
             }
         }
         
